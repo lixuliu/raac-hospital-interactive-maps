@@ -271,3 +271,48 @@ When citing this software in academic work, please use the following format:
   version = {1.0.0}
 }
 ```
+
+# Commercial Use Guidelines
+
+This project is licensed under the [Creative Commons Attribution 4.0 License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).  
+You are free to use, share, and adapt the material — including in commercial projects — provided you give proper credit.
+
+## Attribution Requirements
+
+If you use this project (including as part of a paid product or service), you must visibly credit:
+
+> Dr. Lixu Liu, University of Birmingham  
+> “RAAC Hospital Interactive Maps”  
+> https://github.com/lixuliu/raac-hospital-interactive-maps
+
+## Respectful Use
+
+Although commercial use is permitted by license, **the author discourages direct resale or redistribution** of this project without meaningful modification or added value.
+
+### ✅ You may:
+
+- Use or adapt the software in your paid platform or service
+- Share modified versions with proper credit
+- Reference or include the work in academic, consulting, or public sector projects
+
+### ❌ Please do not:
+
+- Sell or package the code or map “as-is”
+- Repost the ZIP or map as a paid download
+- Remove author attribution from outputs
+
+For major commercial use or partnership discussions, please contact: lixu@verdemetrix.com
+
+# NOTICE
+
+This software is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0).
+
+The author, Dr. Lixu Liu, welcomes copying, modification, integration, and collaboration.
+
+This software is made available for both academic and commercial use, with the following expectations:
+
+- **Attribution is required** in all public uses or integrations.
+- **Direct resale or redistribution of the code or outputs without modification or added value is discouraged.**
+- Modified versions should clearly indicate they differ from the original.
+
+To acknowledge or notify the author, please contact: lixu@verdemetrix.com
