@@ -16,6 +16,31 @@
 - Centre for Postdoctoral Development in Infrastructure, Cities and Energy (C-DICE)
 - RAAC Research Team, Loughborough University
 
+## Citation
+
+If you use this work in your research, please cite it as:
+
+```
+Liu, L. (2025). RAAC Hospital Interactive Maps [Computer software]. University of Birmingham. https://doi.org/10.25500/edata.bham.00001294
+```
+
+BibTeX format:
+
+```
+@software{liu2025raacmaps,
+  author = {Liu, Lixu},
+  title = {RAAC Hospital Interactive Maps},
+  year = {2025},
+  publisher = {University of Birmingham},
+  url = {https://doi.org/10.25500/edata.bham.00001294},
+  version = {1.0.0}
+}
+```
+
+## Live Demo
+
+The interactive map is available online at: [https://lixuliu.github.io/raac-hospital-interactive-maps/](https://lixuliu.github.io/raac-hospital-interactive-maps/)
+
 ## Overview
 
 This project provides an interactive map visualizing hospitals in England that have confirmed presence of Reinforced Autoclaved Aerated Concrete (RAAC). It combines data processing scripts, mapping tools, and a pre-generated web-based visualization.
@@ -215,15 +240,7 @@ This work has been made possible through the support of:
 
 - Current Version: 1.0.0
 - Last Updated: May 2025
-- DOI: [To be assigned by the repository]
-
-## Citation
-
-If you use this work in your research, please cite it as:
-
-```
-Liu, L. (2025). RAAC Hospital Interactive Maps [Computer software]. University of Birmingham. https://doi.org/[DOI to be assigned]
-```
+- DOI: [10.25500/edata.bham.00001294](https://doi.org/10.25500/edata.bham.00001294)
 
 ## Funding
 
@@ -267,7 +284,7 @@ When citing this software in academic work, please use the following format:
   title = {RAAC Hospital Interactive Maps},
   year = {2025},
   publisher = {University of Birmingham},
-  url = {https://doi.org/[DOI to be assigned]},
+  url = {https://doi.org/10.25500/edata.bham.00001294},
   version = {1.0.0}
 }
 ```
@@ -282,7 +299,7 @@ You are free to use, share, and adapt the material — including in commercial p
 If you use this project (including as part of a paid product or service), you must visibly credit:
 
 > Dr. Lixu Liu, University of Birmingham  
-> “RAAC Hospital Interactive Maps”  
+> "RAAC Hospital Interactive Maps"  
 > https://github.com/lixuliu/raac-hospital-interactive-maps
 
 ## Respectful Use
@@ -297,7 +314,7 @@ Although commercial use is permitted by license, **the author discourages direct
 
 ### ❌ Please do not:
 
-- Sell or package the code or map “as-is”
+- Sell or package the code or map "as-is"
 - Repost the ZIP or map as a paid download
 - Remove author attribution from outputs
 

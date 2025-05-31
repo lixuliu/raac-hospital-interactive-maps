@@ -1,1017 +1,1664 @@
 <!DOCTYPE html>
 <html>
-<head>
-    
+  <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    
-        <script>
-            L_NO_TOUCH = false;
-            L_DISABLE_3D = false;
-        </script>
-    
-    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
-    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+
+    <script>
+      L_NO_TOUCH = false;
+      L_DISABLE_3D = false;
+    </script>
+
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <style>
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+      }
+      .title-overlay {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 10px 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        font-family: Arial, sans-serif;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        text-align: right;
+      }
+      .citation-overlay {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        max-width: 300px;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .citation-overlay h3 {
+        margin: 0 0 5px 0;
+        font-size: 14px;
+        color: #333;
+      }
+      .citation-overlay p {
+        margin: 5px 0;
+      }
+      .citation-overlay a {
+        color: #0066cc;
+        text-decoration: none;
+      }
+      .citation-overlay a:hover {
+        text-decoration: underline;
+      }
+    </style>
+    <style>
+      #map_9677b3e30a27e6cd0f6f2b76f848158a {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        left: 0%;
+        top: 0%;
+      }
+      .leaflet-container {
+        font-size: 1rem;
+      }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
-    
-            <meta name="viewport" content="width=device-width,
-                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-            <style>
-                #map_9677b3e30a27e6cd0f6f2b76f848158a {
-                    position: relative;
-                    width: 100.0%;
-                    height: 100.0%;
-                    left: 0.0%;
-                    top: 0.0%;
-                }
-                .leaflet-container { font-size: 1rem; }
-            </style>
-        
-</head>
-<body>
-    
-    
-            <div class="folium-map" id="map_9677b3e30a27e6cd0f6f2b76f848158a" ></div>
-        
-</body>
-<script>
-    
-    
-            var map_9677b3e30a27e6cd0f6f2b76f848158a = L.map(
-                "map_9677b3e30a27e6cd0f6f2b76f848158a",
-                {
-                    center: [53.3170316, -1.1100012],
-                    crs: L.CRS.EPSG3857,
-                    zoom: 10,
-                    zoomControl: true,
-                    preferCanvas: false,
-                }
-            );
-
-            
-
-        
-    
-            var tile_layer_6e62314f65a18dbdff1f1237109a5ebd = L.tileLayer(
-                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
-            );
-        
-    
-            tile_layer_6e62314f65a18dbdff1f1237109a5ebd.addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-            var circle_marker_9c89780302ae0aa3a5701ca58c8f3418 = L.circleMarker(
-                [53.3170316, -1.1100012],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_2c74743ae9cb132c0aac6f1523fd61e9 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_f43f207484bfa3bdfdb1c168a5305d68 = $(`<div id="html_f43f207484bfa3bdfdb1c168a5305d68" style="width: 100.0%; height: 100.0%;">Name: Bassetlaw District General Hospital<br>Address: Kilton Hill, Worksop S81 0BD</div>`)[0];
-                popup_2c74743ae9cb132c0aac6f1523fd61e9.setContent(html_f43f207484bfa3bdfdb1c168a5305d68);
-            
-        
-
-        circle_marker_9c89780302ae0aa3a5701ca58c8f3418.bindPopup(popup_2c74743ae9cb132c0aac6f1523fd61e9)
-        ;
-
-        
-    
-    
-            var circle_marker_f254b411719e6340066d3268b9dd4935 = L.circleMarker(
-                [51.48255, -0.11278],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_a6dd16d2cce9c887bc9fa0aa7fc867a7 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_286afb6ca1af7eb1f00611597ababe9e = $(`<div id="html_286afb6ca1af7eb1f00611597ababe9e" style="width: 100.0%; height: 100.0%;">Name: Oval Depot<br>Address: 8A Harleyford St, London SE11 5SY</div>`)[0];
-                popup_a6dd16d2cce9c887bc9fa0aa7fc867a7.setContent(html_286afb6ca1af7eb1f00611597ababe9e);
-            
-        
-
-        circle_marker_f254b411719e6340066d3268b9dd4935.bindPopup(popup_a6dd16d2cce9c887bc9fa0aa7fc867a7)
-        ;
-
-        
-    
-    
-            var circle_marker_e905ad3fb1701983162a1487414dcb6d = L.circleMarker(
-                [52.38604, -2.26116],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_1d0ac32f13e17c8df3339138ce3cf529 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_de0143bb1d6f034040a9a69907906f78 = $(`<div id="html_de0143bb1d6f034040a9a69907906f78" style="width: 100.0%; height: 100.0%;">Name: Kidderminster Hospital Treatment Centre<br>Address: Bewdley Rd, Kidderminster DY11 6RJ</div>`)[0];
-                popup_1d0ac32f13e17c8df3339138ce3cf529.setContent(html_de0143bb1d6f034040a9a69907906f78);
-            
-        
-
-        circle_marker_e905ad3fb1701983162a1487414dcb6d.bindPopup(popup_1d0ac32f13e17c8df3339138ce3cf529)
-        ;
-
-        
-    
-    
-            var circle_marker_485914a1be36824deda69848e106d28a = L.circleMarker(
-                [53.89764605, -1.96499915],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_baa5f9b56f9963f47a873a360cf6c2c5 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_a8edfc09f2af78747fa9d118d10d1e84 = $(`<div id="html_a8edfc09f2af78747fa9d118d10d1e84" style="width: 100.0%; height: 100.0%;">Name: Airedale General Hospital<br>Address: Skipton Rd, Steeton, Keighley BD20 6TD</div>`)[0];
-                popup_baa5f9b56f9963f47a873a360cf6c2c5.setContent(html_a8edfc09f2af78747fa9d118d10d1e84);
-            
-        
-
-        circle_marker_485914a1be36824deda69848e106d28a.bindPopup(popup_baa5f9b56f9963f47a873a360cf6c2c5)
-        ;
-
-        
-    
-    
-            var circle_marker_83ff35198d8c7b2f77bbe134bb3718ca = L.circleMarker(
-                [53.82052808, -3.01279188],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_7a9a80e513cd963ee37ce90b47c88fb7 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_1c9398e00bf6dfe4875dbe33bdd18b21 = $(`<div id="html_1c9398e00bf6dfe4875dbe33bdd18b21" style="width: 100.0%; height: 100.0%;">Name: Blackpool Victoria Hospital<br>Address: Whinney Heys Rd, Blackpool FY3 8NR</div>`)[0];
-                popup_7a9a80e513cd963ee37ce90b47c88fb7.setContent(html_1c9398e00bf6dfe4875dbe33bdd18b21);
-            
-        
-
-        circle_marker_83ff35198d8c7b2f77bbe134bb3718ca.bindPopup(popup_7a9a80e513cd963ee37ce90b47c88fb7)
-        ;
-
-        
-    
-    
-            var circle_marker_de66f061e5df88daa426e20e09ca6935 = L.circleMarker(
-                [53.2095225, -2.8988433],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_8dfe9a1c5aeac654f4a2d1834018043b = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_94f48a2584c0bc7a7e72fe0ee27281b9 = $(`<div id="html_94f48a2584c0bc7a7e72fe0ee27281b9" style="width: 100.0%; height: 100.0%;">Name: Countess of Chester Hospital<br>Address: The Countess Of Chester Health Park, Liverpool Rd, Chester CH2 1UL</div>`)[0];
-                popup_8dfe9a1c5aeac654f4a2d1834018043b.setContent(html_94f48a2584c0bc7a7e72fe0ee27281b9);
-            
-        
-
-        circle_marker_de66f061e5df88daa426e20e09ca6935.bindPopup(popup_8dfe9a1c5aeac654f4a2d1834018043b)
-        ;
-
-        
-    
-    
-            var circle_marker_338dc329bcbe6d95e9d5ef9b2d953d7f = L.circleMarker(
-                [51.31974986666667, -0.7415174],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_48c41ecfcc59597330df97e145c47579 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_d5f502f27e137d3a888598697e0f0e1d = $(`<div id="html_d5f502f27e137d3a888598697e0f0e1d" style="width: 100.0%; height: 100.0%;">Name: Frimley Park Hospital<br>Address: Portsmouth Rd, Frimley, Camberley GU16 7UJ</div>`)[0];
-                popup_48c41ecfcc59597330df97e145c47579.setContent(html_d5f502f27e137d3a888598697e0f0e1d);
-            
-        
-
-        circle_marker_338dc329bcbe6d95e9d5ef9b2d953d7f.bindPopup(popup_48c41ecfcc59597330df97e145c47579)
-        ;
-
-        
-    
-    
-            var circle_marker_5873e405b8e178e1ac23953d3d7f98e2 = L.circleMarker(
-                [52.5615827, 1.7167974],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_8a0f4ce8814a958fcdce94f53b9d2bfc = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_063d7cbe6306a183b634657c6746350f = $(`<div id="html_063d7cbe6306a183b634657c6746350f" style="width: 100.0%; height: 100.0%;">Name: James Paget Hospital<br>Address: Lowestoft Road Gorleston-on-Sea, Great Yarmouth NR31 6LA</div>`)[0];
-                popup_8a0f4ce8814a958fcdce94f53b9d2bfc.setContent(html_063d7cbe6306a183b634657c6746350f);
-            
-        
-
-        circle_marker_5873e405b8e178e1ac23953d3d7f98e2.bindPopup(popup_8a0f4ce8814a958fcdce94f53b9d2bfc)
-        ;
-
-        
-    
-    
-            var circle_marker_644eab7c738c160740f35520df738cd4 = L.circleMarker(
-                [53.4631315, -2.9273691],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_dcf4cc31d3e1949669fd9a54925ac15a = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_328c4689795e7d2a1c318006e653cc52 = $(`<div id="html_328c4689795e7d2a1c318006e653cc52" style="width: 100.0%; height: 100.0%;">Name: University Hospital Aintree<br>Address: Stop J, Lower Ln, Fazakerley, Liverpool L9 7AE</div>`)[0];
-                popup_dcf4cc31d3e1949669fd9a54925ac15a.setContent(html_328c4689795e7d2a1c318006e653cc52);
-            
-        
-
-        circle_marker_644eab7c738c160740f35520df738cd4.bindPopup(popup_dcf4cc31d3e1949669fd9a54925ac15a)
-        ;
-
-        
-    
-    
-            var circle_marker_ddae6575580609e924f99a6b4bed6af4 = L.circleMarker(
-                [51.77443106666667, 0.4652626333333333],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_4728964ca19c8e5429cd53b0c08a2b65 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_97ff5cd76f2c4629dc4941f58a18bec8 = $(`<div id="html_97ff5cd76f2c4629dc4941f58a18bec8" style="width: 100.0%; height: 100.0%;">Name: Broomfield Hospital<br>Address: Court Rd, Broomfield, Chelmsford CM1 7ET</div>`)[0];
-                popup_4728964ca19c8e5429cd53b0c08a2b65.setContent(html_97ff5cd76f2c4629dc4941f58a18bec8);
-            
-        
-
-        circle_marker_ddae6575580609e924f99a6b4bed6af4.bindPopup(popup_4728964ca19c8e5429cd53b0c08a2b65)
-        ;
-
-        
-    
-    
-            var circle_marker_d622178df8bea8854315ccb2d537674b = L.circleMarker(
-                [53.11924, -2.4762267],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_7bdade1afe0e4955feaa5d89acf6a030 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_160cb2ad8c792e41c64dca97bdb3bf5a = $(`<div id="html_160cb2ad8c792e41c64dca97bdb3bf5a" style="width: 100.0%; height: 100.0%;">Name: Leighton Hosptial<br>Address: Middlewich Rd, Crewe CW1 4QJ</div>`)[0];
-                popup_7bdade1afe0e4955feaa5d89acf6a030.setContent(html_160cb2ad8c792e41c64dca97bdb3bf5a);
-            
-        
-
-        circle_marker_d622178df8bea8854315ccb2d537674b.bindPopup(popup_7bdade1afe0e4955feaa5d89acf6a030)
-        ;
-
-        
-    
-    
-            var circle_marker_66ac52973c32960680c2c4632544c0ad = L.circleMarker(
-                [53.0566522, -2.19069595],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_e7928866e089fb05ed0bc4252e864850 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_12f15e8a70a556dc3c823c7ace9d424e = $(`<div id="html_12f15e8a70a556dc3c823c7ace9d424e" style="width: 100.0%; height: 100.0%;">Name: Haywood Hospital<br>Address: High Ln, Burslem, Stoke-on-Trent ST6 7AG</div>`)[0];
-                popup_e7928866e089fb05ed0bc4252e864850.setContent(html_12f15e8a70a556dc3c823c7ace9d424e);
-            
-        
-
-        circle_marker_66ac52973c32960680c2c4632544c0ad.bindPopup(popup_e7928866e089fb05ed0bc4252e864850)
-        ;
-
-        
-    
-    
-            var circle_marker_a0c8baa73fac5ead88e34dcd25b1c557 = L.circleMarker(
-                [52.7556864, 0.4436087],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_f452844c28b14811b58cb5f9a894b6b5 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_110ef533873add33145501e4ce73b28b = $(`<div id="html_110ef533873add33145501e4ce73b28b" style="width: 100.0%; height: 100.0%;">Name: The Queen Elizabeth Hospital<br>Address: Gayton Rd, King's Lynn PE30 4ET</div>`)[0];
-                popup_f452844c28b14811b58cb5f9a894b6b5.setContent(html_110ef533873add33145501e4ce73b28b);
-            
-        
-
-        circle_marker_a0c8baa73fac5ead88e34dcd25b1c557.bindPopup(popup_f452844c28b14811b58cb5f9a894b6b5)
-        ;
-
-        
-    
-    
-            var circle_marker_2bca3b6e55121227a9c8310e2061f003 = L.circleMarker(
-                [52.23165296666667, 0.7091504333333333],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_edd3647d6ba16f7ab96fc0c6d857bd1e = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_de9544e3d5de9e826f25cf50c5ee596b = $(`<div id="html_de9544e3d5de9e826f25cf50c5ee596b" style="width: 100.0%; height: 100.0%;">Name: West Suffolk Hospital<br>Address: Hardwick Ln, Bury St Edmunds, Bury Saint Edmunds IP33 2QZ</div>`)[0];
-                popup_edd3647d6ba16f7ab96fc0c6d857bd1e.setContent(html_de9544e3d5de9e826f25cf50c5ee596b);
-            
-        
-
-        circle_marker_2bca3b6e55121227a9c8310e2061f003.bindPopup(popup_edd3647d6ba16f7ab96fc0c6d857bd1e)
-        ;
-
-        
-    
-    
-            var circle_marker_359c453d74d396e997f45321e42fc014 = L.circleMarker(
-                [52.3332436, -0.2023134],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_14087e24d2820db164882beb589f6841 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_e87b471be2a122e223a0a6575adee901 = $(`<div id="html_e87b471be2a122e223a0a6575adee901" style="width: 100.0%; height: 100.0%;">Name: Hinchingbrooke Hospital<br>Address: Parkway Hinchingbrooke, Huntingdon PE29 6NT</div>`)[0];
-                popup_14087e24d2820db164882beb589f6841.setContent(html_e87b471be2a122e223a0a6575adee901);
-            
-        
-
-        circle_marker_359c453d74d396e997f45321e42fc014.bindPopup(popup_14087e24d2820db164882beb589f6841)
-        ;
-
-        
-    
-    
-            var circle_marker_01c33146f2945bcfea417e2bf36495ff = L.circleMarker(
-                [52.6559481, -0.4675645],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_842aefcfde5609bf4de596dad3c5e053 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_2c3d7ef50b2580f94f278ea996d215a9 = $(`<div id="html_2c3d7ef50b2580f94f278ea996d215a9" style="width: 100.0%; height: 100.0%;">Name: Stamford and Rutland Hospital<br>Address: Ryhall Rd, Stamford PE9 1UA</div>`)[0];
-                popup_842aefcfde5609bf4de596dad3c5e053.setContent(html_2c3d7ef50b2580f94f278ea996d215a9);
-            
-        
-
-        circle_marker_01c33146f2945bcfea417e2bf36495ff.bindPopup(popup_842aefcfde5609bf4de596dad3c5e053)
-        ;
-
-        
-    
-    
-            var circle_marker_95f687b310ac20ce9f75d5c5a20023a8 = L.circleMarker(
-                [53.38378, -2.1320199],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_2e28a88512664d47685c4e6ddcd050a1 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_10e3f88343c2d7200265b8f24da2a8b1 = $(`<div id="html_10e3f88343c2d7200265b8f24da2a8b1" style="width: 100.0%; height: 100.0%;">Name: Stepping Hill Hospital<br>Address: Poplar Grove, Hazel Grove, Stockport SK2 7JE</div>`)[0];
-                popup_2e28a88512664d47685c4e6ddcd050a1.setContent(html_10e3f88343c2d7200265b8f24da2a8b1);
-            
-        
-
-        circle_marker_95f687b310ac20ce9f75d5c5a20023a8.bindPopup(popup_2e28a88512664d47685c4e6ddcd050a1)
-        ;
-
-        
-    
-    
-            var circle_marker_b4fdbed44db0f160ba93c7cd6c898bed = L.circleMarker(
-                [52.6650128, 0.1640225],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_72b89e35ebc263d86d4cdd1790fdbc60 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_71306d2916e6d3da89f9a6648a356e40 = $(`<div id="html_71306d2916e6d3da89f9a6648a356e40" style="width: 100.0%; height: 100.0%;">Name: North Cambridgeshire Hospital - Wisbech<br>Address: Churchill Rd, Wisbech PE13 3AB</div>`)[0];
-                popup_72b89e35ebc263d86d4cdd1790fdbc60.setContent(html_71306d2916e6d3da89f9a6648a356e40);
-            
-        
-
-        circle_marker_b4fdbed44db0f160ba93c7cd6c898bed.bindPopup(popup_72b89e35ebc263d86d4cdd1790fdbc60)
-        ;
-
-        
-    
-    
-            var circle_marker_b23639d3c1945415be11448f61ac42d4 = L.circleMarker(
-                [53.51788, -2.2295],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_64f84f35260c2c4d8ce9559533d74e2b = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_d784c38504218198eaf58f7e9ce5c86b = $(`<div id="html_d784c38504218198eaf58f7e9ce5c86b" style="width: 100.0%; height: 100.0%;">Name: North Manchester General<br>Address: Delaunays Rd, Crumpsall, Manchester M8 5RB</div>`)[0];
-                popup_64f84f35260c2c4d8ce9559533d74e2b.setContent(html_d784c38504218198eaf58f7e9ce5c86b);
-            
-        
-
-        circle_marker_b23639d3c1945415be11448f61ac42d4.bindPopup(popup_64f84f35260c2c4d8ce9559533d74e2b)
-        ;
-
-        
-    
-    
-            var circle_marker_d7cf59788103011790ec6431e8d53ede = L.circleMarker(
-                [53.38792, -2.29318],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_3550376d0ecc95b85216682c274ca5ed = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_7d3872379e9fa3e6eed7b5e1ef2200fa = $(`<div id="html_7d3872379e9fa3e6eed7b5e1ef2200fa" style="width: 100.0%; height: 100.0%;">Name: Wythenshawe Hospital <br>Address: Southmoor Rd, Wythenshawe, Manchester M23 9LT</div>`)[0];
-                popup_3550376d0ecc95b85216682c274ca5ed.setContent(html_7d3872379e9fa3e6eed7b5e1ef2200fa);
-            
-        
-
-        circle_marker_d7cf59788103011790ec6431e8d53ede.bindPopup(popup_3550376d0ecc95b85216682c274ca5ed)
-        ;
-
-        
-    
-    
-            var circle_marker_1f001c8daba2b3105044f8a18c72d0e5 = L.circleMarker(
-                [54.2822481, -0.4362387],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_b34b174e8155bde93c9468533d7b9846 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_cded56cae4d791d24cb967d2d744cbd1 = $(`<div id="html_cded56cae4d791d24cb967d2d744cbd1" style="width: 100.0%; height: 100.0%;">Name: Scarborough General Hospital<br>Address: Woodlands Dr, Scarborough YO12 6QL</div>`)[0];
-                popup_b34b174e8155bde93c9468533d7b9846.setContent(html_cded56cae4d791d24cb967d2d744cbd1);
-            
-        
-
-        circle_marker_1f001c8daba2b3105044f8a18c72d0e5.bindPopup(popup_b34b174e8155bde93c9468533d7b9846)
-        ;
-
-        
-    
-    
-            var circle_marker_3f05b2fb04a3f57210d289e48efe2e1b = L.circleMarker(
-                [53.9938316, -1.5180971],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_1d6e412f7668d4813f1e7533b33e5651 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_bee167ad2735f53f0fe1d1341d019070 = $(`<div id="html_bee167ad2735f53f0fe1d1341d019070" style="width: 100.0%; height: 100.0%;">Name: Harrogate Hospital<br>Address: Lancaster Park Rd, Harrogate HG2 7SX</div>`)[0];
-                popup_1d6e412f7668d4813f1e7533b33e5651.setContent(html_bee167ad2735f53f0fe1d1341d019070);
-            
-        
-
-        circle_marker_3f05b2fb04a3f57210d289e48efe2e1b.bindPopup(popup_1d6e412f7668d4813f1e7533b33e5651)
-        ;
-
-        
-    
-    
-            var circle_marker_eaa2ee13e7dac24ecf4369358411f65f = L.circleMarker(
-                [50.93284145, -1.434199983333333],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_a634cfaa88f13de7232b2e33fb8fbcac = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_fd33f35bd373f155f396d8bb019d63df = $(`<div id="html_fd33f35bd373f155f396d8bb019d63df" style="width: 100.0%; height: 100.0%;">Name: Southampton General Hospital<br>Address: Tremona Rd, Southampton SO16 6YD</div>`)[0];
-                popup_a634cfaa88f13de7232b2e33fb8fbcac.setContent(html_fd33f35bd373f155f396d8bb019d63df);
-            
-        
-
-        circle_marker_eaa2ee13e7dac24ecf4369358411f65f.bindPopup(popup_a634cfaa88f13de7232b2e33fb8fbcac)
-        ;
-
-        
-    
-    
-            var circle_marker_8aea995557ea672d5e0891e8d04a8a66 = L.circleMarker(
-                [53.4874685, -2.3243642],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_41b5e47f085e5390e53bdb377d4b4d9a = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_ee9c4b55809dcd8fd7bb478b2861b076 = $(`<div id="html_ee9c4b55809dcd8fd7bb478b2861b076" style="width: 100.0%; height: 100.0%;">Name: Salford Royal Hospital<br>Address: Stott Ln, Salford M6 8HD</div>`)[0];
-                popup_41b5e47f085e5390e53bdb377d4b4d9a.setContent(html_ee9c4b55809dcd8fd7bb478b2861b076);
-            
-        
-
-        circle_marker_8aea995557ea672d5e0891e8d04a8a66.bindPopup(popup_41b5e47f085e5390e53bdb377d4b4d9a)
-        ;
-
-        
-    
-    
-            var circle_marker_2c50cb8365256022faa861f073a69ca0 = L.circleMarker(
-                [53.55395, -2.12067],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_b21f0e187e661037632e587fca7d66cf = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_0377339e675c749055a86fee728577f5 = $(`<div id="html_0377339e675c749055a86fee728577f5" style="width: 100.0%; height: 100.0%;">Name: The Royal Oldham Hospital<br>Address: Rochdale Rd, Oldham OL1 2JH</div>`)[0];
-                popup_b21f0e187e661037632e587fca7d66cf.setContent(html_0377339e675c749055a86fee728577f5);
-            
-        
-
-        circle_marker_2c50cb8365256022faa861f073a69ca0.bindPopup(popup_b21f0e187e661037632e587fca7d66cf)
-        ;
-
-        
-    
-    
-            var circle_marker_6cf0af67525af75d49298c82b562a30c = L.circleMarker(
-                [53.7359807, -2.4635709],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_065f567b746f64333ff038b761b87512 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_dcec70e821b173db6e8ee48b6de1b87f = $(`<div id="html_dcec70e821b173db6e8ee48b6de1b87f" style="width: 100.0%; height: 100.0%;">Name: Royal Blackburn Hospital<br>Address: Haslingden Rd, Blackburn BB2 3HH</div>`)[0];
-                popup_065f567b746f64333ff038b761b87512.setContent(html_dcec70e821b173db6e8ee48b6de1b87f);
-            
-        
-
-        circle_marker_6cf0af67525af75d49298c82b562a30c.bindPopup(popup_065f567b746f64333ff038b761b87512)
-        ;
-
-        
-    
-    
-            var circle_marker_459299d96adc9475393aace5609eee44 = L.circleMarker(
-                [52.6341417, 1.2625801],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_04674b8991b9618aa014e1ac3704153a = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_409a02e95cdb29ab11e05f82d8a88f0d = $(`<div id="html_409a02e95cdb29ab11e05f82d8a88f0d" style="width: 100.0%; height: 100.0%;">Name: Norwich Community Hospital<br>Address: Bowthorpe Rd, Norwich NR2 3TU</div>`)[0];
-                popup_04674b8991b9618aa014e1ac3704153a.setContent(html_409a02e95cdb29ab11e05f82d8a88f0d);
-            
-        
-
-        circle_marker_459299d96adc9475393aace5609eee44.bindPopup(popup_04674b8991b9618aa014e1ac3704153a)
-        ;
-
-        
-    
-    
-            var circle_marker_bc32e2b16c7253d5325263a9ba2b72d9 = L.circleMarker(
-                [51.7505724, -1.216175],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_a17fe8e2895fcc0348c53499df6d2b18 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_251b1b2182603f9548615ef4cd050183 = $(`<div id="html_251b1b2182603f9548615ef4cd050183" style="width: 100.0%; height: 100.0%;">Name: Churchill Hospital <br>Address: Old Rd, Headington, Oxford OX3 7LE</div>`)[0];
-                popup_a17fe8e2895fcc0348c53499df6d2b18.setContent(html_251b1b2182603f9548615ef4cd050183);
-            
-        
-
-        circle_marker_bc32e2b16c7253d5325263a9ba2b72d9.bindPopup(popup_a17fe8e2895fcc0348c53499df6d2b18)
-        ;
-
-        
-    
-    
-            var circle_marker_ca563f7fe20971c6901b9db68013e12f = L.circleMarker(
-                [50.7995578, -1.0642317],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_31d795eb7a61d3bc0d984fff3ebff186 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_0590ccc051e48a7aaf5348d951394c7e = $(`<div id="html_0590ccc051e48a7aaf5348d951394c7e" style="width: 100.0%; height: 100.0%;">Name: St. Marys Community Hospital<br>Address: Milton Rd, Milton, Portsmouth PO3 6AD</div>`)[0];
-                popup_31d795eb7a61d3bc0d984fff3ebff186.setContent(html_0590ccc051e48a7aaf5348d951394c7e);
-            
-        
-
-        circle_marker_ca563f7fe20971c6901b9db68013e12f.bindPopup(popup_31d795eb7a61d3bc0d984fff3ebff186)
-        ;
-
-        
-    
-    
-            var circle_marker_84ffbe959e16db512f23168f0bfe3389 = L.circleMarker(
-                [50.8439405, -0.7690264],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_89634328c8eee24ac15f9552ebec725c = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_bffd77f918f110378f785d6c7b2d3ae9 = $(`<div id="html_bffd77f918f110378f785d6c7b2d3ae9" style="width: 100.0%; height: 100.0%;">Name: St Richard's Hospital<br>Address: Spitalfield Ln, Chichester PO19 6SE</div>`)[0];
-                popup_89634328c8eee24ac15f9552ebec725c.setContent(html_bffd77f918f110378f785d6c7b2d3ae9);
-            
-        
-
-        circle_marker_84ffbe959e16db512f23168f0bfe3389.bindPopup(popup_89634328c8eee24ac15f9552ebec725c)
-        ;
-
-        
-    
-    
-            var circle_marker_f506d4ae084c52ea914440e478eff5b3 = L.circleMarker(
-                [54.5824951, -1.3470967],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_794198aef1017391b95ae6f29f58acbc = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_6bd329bee7519d5a6603674a2ea8265a = $(`<div id="html_6bd329bee7519d5a6603674a2ea8265a" style="width: 100.0%; height: 100.0%;">Name: University Hospital of North Tees <br>Address: Hardwick Rd, Hardwick, Stockton-on-Tees TS19 8PE</div>`)[0];
-                popup_794198aef1017391b95ae6f29f58acbc.setContent(html_6bd329bee7519d5a6603674a2ea8265a);
-            
-        
-
-        circle_marker_f506d4ae084c52ea914440e478eff5b3.bindPopup(popup_794198aef1017391b95ae6f29f58acbc)
-        ;
-
-        
-    
-    
-            var circle_marker_5935b4de1920a0b4d281a383bd2ce9a4 = L.circleMarker(
-                [54.55172303333334, -1.214676466666667],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_9cc53be8c0ad97fa868aaf1f0052fa72 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_13d5ca3d8897f6742023aca0c44a4318 = $(`<div id="html_13d5ca3d8897f6742023aca0c44a4318" style="width: 100.0%; height: 100.0%;">Name: James Cook Hospital<br>Address: Marton Rd, Middlesbrough TS4 3BW</div>`)[0];
-                popup_9cc53be8c0ad97fa868aaf1f0052fa72.setContent(html_13d5ca3d8897f6742023aca0c44a4318);
-            
-        
-
-        circle_marker_5935b4de1920a0b4d281a383bd2ce9a4.bindPopup(popup_9cc53be8c0ad97fa868aaf1f0052fa72)
-        ;
-
-        
-    
-    
-            var circle_marker_9d1372cd59132814c68726b2d1a6092d = L.circleMarker(
-                [53.587034, -0.6672],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_f0884e74fc38f487c5633c38270f7e65 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_e6c07bf7530fdc77bc3bcbd056a33894 = $(`<div id="html_e6c07bf7530fdc77bc3bcbd056a33894" style="width: 100.0%; height: 100.0%;">Name: Scunthorpe General Hospital <br>Address: Cliff Gardens, Scunthorpe DN15 7BH</div>`)[0];
-                popup_f0884e74fc38f487c5633c38270f7e65.setContent(html_e6c07bf7530fdc77bc3bcbd056a33894);
-            
-        
-
-        circle_marker_9d1372cd59132814c68726b2d1a6092d.bindPopup(popup_f0884e74fc38f487c5633c38270f7e65)
-        ;
-
-        
-    
-    
-            var circle_marker_7e56a0fe756ccff36f23a7e9ce6619e3 = L.circleMarker(
-                [52.7122853, -2.5122048],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_b7c79ad9ff4e42a1f88152a91fb82af1 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_1e42dadac9a542ebf483a10226a125d1 = $(`<div id="html_1e42dadac9a542ebf483a10226a125d1" style="width: 100.0%; height: 100.0%;">Name: The Princess Royal Hospital<br>Address: Apley Castle, Telford TF1 6TF</div>`)[0];
-                popup_b7c79ad9ff4e42a1f88152a91fb82af1.setContent(html_1e42dadac9a542ebf483a10226a125d1);
-            
-        
-
-        circle_marker_7e56a0fe756ccff36f23a7e9ce6619e3.bindPopup(popup_b7c79ad9ff4e42a1f88152a91fb82af1)
-        ;
-
-        
-    
-    
-            var circle_marker_bc3bf1a7a84c47e6e4ee4a035c69e3c5 = L.circleMarker(
-                [52.5024733, -2.12124055],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_bb4bcd51c75fc29f7a5c487073c83c23 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_b611924148e96fd2d678a49a82086dc2 = $(`<div id="html_b611924148e96fd2d678a49a82086dc2" style="width: 100.0%; height: 100.0%;">Name: Russells Hall<br>Address: Pensnett Rd, Dudley DY1 2HQ</div>`)[0];
-                popup_bb4bcd51c75fc29f7a5c487073c83c23.setContent(html_b611924148e96fd2d678a49a82086dc2);
-            
-        
-
-        circle_marker_bc3bf1a7a84c47e6e4ee4a035c69e3c5.bindPopup(popup_bb4bcd51c75fc29f7a5c487073c83c23)
-        ;
-
-        
-    
-    
-            var circle_marker_67d95c3d1a8dda1f585c1f86a71ebc05 = L.circleMarker(
-                [51.553116, -0.1652263],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_8d1ca2a85f33a3fd4122a80fac4b5eaa = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_d21f22a4fa59f8a3e79c54d5ae7c0dee = $(`<div id="html_d21f22a4fa59f8a3e79c54d5ae7c0dee" style="width: 100.0%; height: 100.0%;">Name: Royal Free Hospital<br>Address: Pond St, London NW3 2QG</div>`)[0];
-                popup_8d1ca2a85f33a3fd4122a80fac4b5eaa.setContent(html_d21f22a4fa59f8a3e79c54d5ae7c0dee);
-            
-        
-
-        circle_marker_67d95c3d1a8dda1f585c1f86a71ebc05.bindPopup(popup_8d1ca2a85f33a3fd4122a80fac4b5eaa)
-        ;
-
-        
-    
-    
-            var circle_marker_7496fe70c2561a531bc5d269228c0dfc = L.circleMarker(
-                [51.55005385, -0.0459811],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_1b3b89b5a678995ee97ceb4ff4a73e97 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_7190dc6aef8a00532a9e7f23c3724456 = $(`<div id="html_7190dc6aef8a00532a9e7f23c3724456" style="width: 100.0%; height: 100.0%;">Name: Homerton University Hospital<br>Address: Homerton Row, London E9 6SR</div>`)[0];
-                popup_1b3b89b5a678995ee97ceb4ff4a73e97.setContent(html_7190dc6aef8a00532a9e7f23c3724456);
-            
-        
-
-        circle_marker_7496fe70c2561a531bc5d269228c0dfc.bindPopup(popup_1b3b89b5a678995ee97ceb4ff4a73e97)
-        ;
-
-        
-    
-    
-            var circle_marker_e1720fddaeec4f0364eee447faf64351 = L.circleMarker(
-                [53.3316004, -3.0253121],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_3a329c0d07d395fa67ef5720ae5f6d4d = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_395a883fc4582628a6d4214568fa07ce = $(`<div id="html_395a883fc4582628a6d4214568fa07ce" style="width: 100.0%; height: 100.0%;">Name: Clatterbridge Hospital <br>Address: Clatterbridge Rd, Bebington, Birkenhead, Wirral CH63 4JY</div>`)[0];
-                popup_3a329c0d07d395fa67ef5720ae5f6d4d.setContent(html_395a883fc4582628a6d4214568fa07ce);
-            
-        
-
-        circle_marker_e1720fddaeec4f0364eee447faf64351.bindPopup(popup_3a329c0d07d395fa67ef5720ae5f6d4d)
-        ;
-
-        
-    
-    
-            var circle_marker_542c024ce47bce583e11f866d1e4e1bf = L.circleMarker(
-                [51.09217, -4.05043],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_7ba563ad5e079dff967a7b960ed30771 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_bff51a884375521fa4bd8cc0059ffda5 = $(`<div id="html_bff51a884375521fa4bd8cc0059ffda5" style="width: 100.0%; height: 100.0%;">Name: North Devon District Hospital<br>Address: Raleigh Heights, Barnstaple EX31 4JB</div>`)[0];
-                popup_7ba563ad5e079dff967a7b960ed30771.setContent(html_bff51a884375521fa4bd8cc0059ffda5);
-            
-        
-
-        circle_marker_542c024ce47bce583e11f866d1e4e1bf.bindPopup(popup_7ba563ad5e079dff967a7b960ed30771)
-        ;
-
-        
-    
-    
-            var circle_marker_ab1fe236cd36102e6e1616671f93771b = L.circleMarker(
-                [50.4160585, -4.114495],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_6a52c2160e8da92d3bcef9a0b58f9bcb = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_6f3caef4607ae110272f1922129c372d = $(`<div id="html_6f3caef4607ae110272f1922129c372d" style="width: 100.0%; height: 100.0%;">Name: Derriford Hospital<br>Address: Derriford Rd, Plymouth PL6 8DH</div>`)[0];
-                popup_6a52c2160e8da92d3bcef9a0b58f9bcb.setContent(html_6f3caef4607ae110272f1922129c372d);
-            
-        
-
-        circle_marker_ab1fe236cd36102e6e1616671f93771b.bindPopup(popup_6a52c2160e8da92d3bcef9a0b58f9bcb)
-        ;
-
-        
-    
-    
-            var circle_marker_2af452d031dfb160855d5873d7e71749 = L.circleMarker(
-                [51.3798003, 0.5416386],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_49ef705b033a9c3a54b55d15c958adf0 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_73714845f74a031dda9783005f45e47e = $(`<div id="html_73714845f74a031dda9783005f45e47e" style="width: 100.0%; height: 100.0%;">Name: Medway Maritime Hospital<br>Address: Windmill Rd, Gillingham, Kent ME7 5NY</div>`)[0];
-                popup_49ef705b033a9c3a54b55d15c958adf0.setContent(html_73714845f74a031dda9783005f45e47e);
-            
-        
-
-        circle_marker_2af452d031dfb160855d5873d7e71749.bindPopup(popup_49ef705b033a9c3a54b55d15c958adf0)
-        ;
-
-        
-    
-    
-            var circle_marker_2b58a69b6ef55c5fa2d93fc79bafe957 = L.circleMarker(
-                [53.55913, -1.49949],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_74eafbe7a8aaf5be05745f60fdc48b55 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_23bb91e3d98744de4dfcfcd1b6bbaf1d = $(`<div id="html_23bb91e3d98744de4dfcfcd1b6bbaf1d" style="width: 100.0%; height: 100.0%;">Name: Barnsley Hospital<br>Address: Gawber Rd, Barnsley S75 2EP</div>`)[0];
-                popup_74eafbe7a8aaf5be05745f60fdc48b55.setContent(html_23bb91e3d98744de4dfcfcd1b6bbaf1d);
-            
-        
-
-        circle_marker_2b58a69b6ef55c5fa2d93fc79bafe957.bindPopup(popup_74eafbe7a8aaf5be05745f60fdc48b55)
-        ;
-
-        
-    
-    
-            var circle_marker_9464d0d140d6819d0e4d321383374c06 = L.circleMarker(
-                [51.45326853333333, -0.01737919166666667],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_45f923c09be4214c661a5d57547ff9ba = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_7309311f1f4d3e86c639339fd7551063 = $(`<div id="html_7309311f1f4d3e86c639339fd7551063" style="width: 100.0%; height: 100.0%;">Name: University Hospital Lewisham<br>Address: University Hospital Lewisham, Lewisham High St, London SE13 6LH</div>`)[0];
-                popup_45f923c09be4214c661a5d57547ff9ba.setContent(html_7309311f1f4d3e86c639339fd7551063);
-            
-        
-
-        circle_marker_9464d0d140d6819d0e4d321383374c06.bindPopup(popup_45f923c09be4214c661a5d57547ff9ba)
-        ;
-
-        
-    
-    
-            var circle_marker_c44275940718f09cad7f22bd8d0ca68a = L.circleMarker(
-                [51.66653, -0.1040399],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_b11fe5fd51b554108dc34de7fe3468b6 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_ec7e0ef4ce459131ab1a779ad4ec8d91 = $(`<div id="html_ec7e0ef4ce459131ab1a779ad4ec8d91" style="width: 100.0%; height: 100.0%;">Name: Chase Farm Hospital<br>Address: 127 The Ridgeway, Enfield EN2 8JL</div>`)[0];
-                popup_b11fe5fd51b554108dc34de7fe3468b6.setContent(html_ec7e0ef4ce459131ab1a779ad4ec8d91);
-            
-        
-
-        circle_marker_c44275940718f09cad7f22bd8d0ca68a.bindPopup(popup_b11fe5fd51b554108dc34de7fe3468b6)
-        ;
-
-        
-    
-    
-            var circle_marker_fc36eee36c4d604815ee4edbaceab357 = L.circleMarker(
-                [51.2413044, -0.608939075],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
-        
-    
-        var popup_6adfe8d2ecce80ba471071bc62a60301 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_51b1f96370e6ecf8900c1ddd16d10dc7 = $(`<div id="html_51b1f96370e6ecf8900c1ddd16d10dc7" style="width: 100.0%; height: 100.0%;">Name: Guildford Hospital<br>Address: Egerton Rd, Guildford GU2 7XX</div>`)[0];
-                popup_6adfe8d2ecce80ba471071bc62a60301.setContent(html_51b1f96370e6ecf8900c1ddd16d10dc7);
-            
-        
-
-        circle_marker_fc36eee36c4d604815ee4edbaceab357.bindPopup(popup_6adfe8d2ecce80ba471071bc62a60301)
-        ;
-
-        
-    
-</script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"
+    />
+
+    <meta
+      name="viewport"
+      content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+  </head>
+  <body>
+    <div class="title-overlay">
+      Interactive Map of Hospitals with Confirmed RAAC in England
+    </div>
+    <div class="folium-map" id="map_9677b3e30a27e6cd0f6f2b76f848158a"></div>
+    <div class="citation-overlay">
+      <h3>Citation Information</h3>
+      <p>
+        Liu, L. (2025). RAAC Hospital Interactive Maps [Computer software].
+        University of Birmingham.
+      </p>
+      <p>
+        DOI:
+        <a href="https://doi.org/10.25500/edata.bham.00001294" target="_blank"
+          >10.25500/edata.bham.00001294</a
+        >
+      </p>
+      <p>
+        Live Demo:
+        <a
+          href="https://lixuliu.github.io/raac-hospital-interactive-maps/"
+          target="_blank"
+          >Interactive Map</a
+        >
+      </p>
+    </div>
+  </body>
+  <script>
+    var map_9677b3e30a27e6cd0f6f2b76f848158a = L.map(
+      "map_9677b3e30a27e6cd0f6f2b76f848158a",
+      {
+        center: [52.5, -2], // Center of England
+        crs: L.CRS.EPSG3857,
+        zoom: 7, // Adjusted zoom level to show all of England
+        zoomControl: true,
+        preferCanvas: false,
+      }
+    );
+
+    var tile_layer_6e62314f65a18dbdff1f1237109a5ebd = L.tileLayer(
+      "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+      {
+        attribution:
+          '\u0026copy; \u003ca href="https://www.openstreetmap.org/copyright"\u003eOpenStreetMap\u003c/a\u003e contributors',
+        detectRetina: false,
+        maxNativeZoom: 19,
+        maxZoom: 19,
+        minZoom: 0,
+        noWrap: false,
+        opacity: 1,
+        subdomains: "abc",
+        tms: false,
+      }
+    );
+
+    tile_layer_6e62314f65a18dbdff1f1237109a5ebd.addTo(
+      map_9677b3e30a27e6cd0f6f2b76f848158a
+    );
+
+    var circle_marker_9c89780302ae0aa3a5701ca58c8f3418 = L.circleMarker(
+      [53.3170316, -1.1100012],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_2c74743ae9cb132c0aac6f1523fd61e9 = L.popup({ maxWidth: "100%" });
+
+    var html_f43f207484bfa3bdfdb1c168a5305d68 = $(
+      `<div id="html_f43f207484bfa3bdfdb1c168a5305d68" style="width: 100.0%; height: 100.0%;">Name: Bassetlaw District General Hospital<br>Address: Kilton Hill, Worksop S81 0BD</div>`
+    )[0];
+    popup_2c74743ae9cb132c0aac6f1523fd61e9.setContent(
+      html_f43f207484bfa3bdfdb1c168a5305d68
+    );
+
+    circle_marker_9c89780302ae0aa3a5701ca58c8f3418.bindPopup(
+      popup_2c74743ae9cb132c0aac6f1523fd61e9
+    );
+
+    var circle_marker_f254b411719e6340066d3268b9dd4935 = L.circleMarker(
+      [51.48255, -0.11278],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_a6dd16d2cce9c887bc9fa0aa7fc867a7 = L.popup({ maxWidth: "100%" });
+
+    var html_286afb6ca1af7eb1f00611597ababe9e = $(
+      `<div id="html_286afb6ca1af7eb1f00611597ababe9e" style="width: 100.0%; height: 100.0%;">Name: Oval Depot<br>Address: 8A Harleyford St, London SE11 5SY</div>`
+    )[0];
+    popup_a6dd16d2cce9c887bc9fa0aa7fc867a7.setContent(
+      html_286afb6ca1af7eb1f00611597ababe9e
+    );
+
+    circle_marker_f254b411719e6340066d3268b9dd4935.bindPopup(
+      popup_a6dd16d2cce9c887bc9fa0aa7fc867a7
+    );
+
+    var circle_marker_e905ad3fb1701983162a1487414dcb6d = L.circleMarker(
+      [52.38604, -2.26116],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_1d0ac32f13e17c8df3339138ce3cf529 = L.popup({ maxWidth: "100%" });
+
+    var html_de0143bb1d6f034040a9a69907906f78 = $(
+      `<div id="html_de0143bb1d6f034040a9a69907906f78" style="width: 100.0%; height: 100.0%;">Name: Kidderminster Hospital Treatment Centre<br>Address: Bewdley Rd, Kidderminster DY11 6RJ</div>`
+    )[0];
+    popup_1d0ac32f13e17c8df3339138ce3cf529.setContent(
+      html_de0143bb1d6f034040a9a69907906f78
+    );
+
+    circle_marker_e905ad3fb1701983162a1487414dcb6d.bindPopup(
+      popup_1d0ac32f13e17c8df3339138ce3cf529
+    );
+
+    var circle_marker_485914a1be36824deda69848e106d28a = L.circleMarker(
+      [53.89764605, -1.96499915],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_baa5f9b56f9963f47a873a360cf6c2c5 = L.popup({ maxWidth: "100%" });
+
+    var html_a8edfc09f2af78747fa9d118d10d1e84 = $(
+      `<div id="html_a8edfc09f2af78747fa9d118d10d1e84" style="width: 100.0%; height: 100.0%;">Name: Airedale General Hospital<br>Address: Skipton Rd, Steeton, Keighley BD20 6TD</div>`
+    )[0];
+    popup_baa5f9b56f9963f47a873a360cf6c2c5.setContent(
+      html_a8edfc09f2af78747fa9d118d10d1e84
+    );
+
+    circle_marker_485914a1be36824deda69848e106d28a.bindPopup(
+      popup_baa5f9b56f9963f47a873a360cf6c2c5
+    );
+
+    var circle_marker_83ff35198d8c7b2f77bbe134bb3718ca = L.circleMarker(
+      [53.82052808, -3.01279188],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_7a9a80e513cd963ee37ce90b47c88fb7 = L.popup({ maxWidth: "100%" });
+
+    var html_1c9398e00bf6dfe4875dbe33bdd18b21 = $(
+      `<div id="html_1c9398e00bf6dfe4875dbe33bdd18b21" style="width: 100.0%; height: 100.0%;">Name: Blackpool Victoria Hospital<br>Address: Whinney Heys Rd, Blackpool FY3 8NR</div>`
+    )[0];
+    popup_7a9a80e513cd963ee37ce90b47c88fb7.setContent(
+      html_1c9398e00bf6dfe4875dbe33bdd18b21
+    );
+
+    circle_marker_83ff35198d8c7b2f77bbe134bb3718ca.bindPopup(
+      popup_7a9a80e513cd963ee37ce90b47c88fb7
+    );
+
+    var circle_marker_de66f061e5df88daa426e20e09ca6935 = L.circleMarker(
+      [53.2095225, -2.8988433],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_8dfe9a1c5aeac654f4a2d1834018043b = L.popup({ maxWidth: "100%" });
+
+    var html_94f48a2584c0bc7a7e72fe0ee27281b9 = $(
+      `<div id="html_94f48a2584c0bc7a7e72fe0ee27281b9" style="width: 100.0%; height: 100.0%;">Name: Countess of Chester Hospital<br>Address: The Countess Of Chester Health Park, Liverpool Rd, Chester CH2 1UL</div>`
+    )[0];
+    popup_8dfe9a1c5aeac654f4a2d1834018043b.setContent(
+      html_94f48a2584c0bc7a7e72fe0ee27281b9
+    );
+
+    circle_marker_de66f061e5df88daa426e20e09ca6935.bindPopup(
+      popup_8dfe9a1c5aeac654f4a2d1834018043b
+    );
+
+    var circle_marker_338dc329bcbe6d95e9d5ef9b2d953d7f = L.circleMarker(
+      [51.31974986666667, -0.7415174],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_48c41ecfcc59597330df97e145c47579 = L.popup({ maxWidth: "100%" });
+
+    var html_d5f502f27e137d3a888598697e0f0e1d = $(
+      `<div id="html_d5f502f27e137d3a888598697e0f0e1d" style="width: 100.0%; height: 100.0%;">Name: Frimley Park Hospital<br>Address: Portsmouth Rd, Frimley, Camberley GU16 7UJ</div>`
+    )[0];
+    popup_48c41ecfcc59597330df97e145c47579.setContent(
+      html_d5f502f27e137d3a888598697e0f0e1d
+    );
+
+    circle_marker_338dc329bcbe6d95e9d5ef9b2d953d7f.bindPopup(
+      popup_48c41ecfcc59597330df97e145c47579
+    );
+
+    var circle_marker_5873e405b8e178e1ac23953d3d7f98e2 = L.circleMarker(
+      [52.5615827, 1.7167974],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_8a0f4ce8814a958fcdce94f53b9d2bfc = L.popup({ maxWidth: "100%" });
+
+    var html_063d7cbe6306a183b634657c6746350f = $(
+      `<div id="html_063d7cbe6306a183b634657c6746350f" style="width: 100.0%; height: 100.0%;">Name: James Paget Hospital<br>Address: Lowestoft Road Gorleston-on-Sea, Great Yarmouth NR31 6LA</div>`
+    )[0];
+    popup_8a0f4ce8814a958fcdce94f53b9d2bfc.setContent(
+      html_063d7cbe6306a183b634657c6746350f
+    );
+
+    circle_marker_5873e405b8e178e1ac23953d3d7f98e2.bindPopup(
+      popup_8a0f4ce8814a958fcdce94f53b9d2bfc
+    );
+
+    var circle_marker_644eab7c738c160740f35520df738cd4 = L.circleMarker(
+      [53.4631315, -2.9273691],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_dcf4cc31d3e1949669fd9a54925ac15a = L.popup({ maxWidth: "100%" });
+
+    var html_328c4689795e7d2a1c318006e653cc52 = $(
+      `<div id="html_328c4689795e7d2a1c318006e653cc52" style="width: 100.0%; height: 100.0%;">Name: University Hospital Aintree<br>Address: Stop J, Lower Ln, Fazakerley, Liverpool L9 7AE</div>`
+    )[0];
+    popup_dcf4cc31d3e1949669fd9a54925ac15a.setContent(
+      html_328c4689795e7d2a1c318006e653cc52
+    );
+
+    circle_marker_644eab7c738c160740f35520df738cd4.bindPopup(
+      popup_dcf4cc31d3e1949669fd9a54925ac15a
+    );
+
+    var circle_marker_ddae6575580609e924f99a6b4bed6af4 = L.circleMarker(
+      [51.77443106666667, 0.4652626333333333],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_4728964ca19c8e5429cd53b0c08a2b65 = L.popup({ maxWidth: "100%" });
+
+    var html_97ff5cd76f2c4629dc4941f58a18bec8 = $(
+      `<div id="html_97ff5cd76f2c4629dc4941f58a18bec8" style="width: 100.0%; height: 100.0%;">Name: Broomfield Hospital<br>Address: Court Rd, Broomfield, Chelmsford CM1 7ET</div>`
+    )[0];
+    popup_4728964ca19c8e5429cd53b0c08a2b65.setContent(
+      html_97ff5cd76f2c4629dc4941f58a18bec8
+    );
+
+    circle_marker_ddae6575580609e924f99a6b4bed6af4.bindPopup(
+      popup_4728964ca19c8e5429cd53b0c08a2b65
+    );
+
+    var circle_marker_d622178df8bea8854315ccb2d537674b = L.circleMarker(
+      [53.11924, -2.4762267],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_7bdade1afe0e4955feaa5d89acf6a030 = L.popup({ maxWidth: "100%" });
+
+    var html_160cb2ad8c792e41c64dca97bdb3bf5a = $(
+      `<div id="html_160cb2ad8c792e41c64dca97bdb3bf5a" style="width: 100.0%; height: 100.0%;">Name: Leighton Hosptial<br>Address: Middlewich Rd, Crewe CW1 4QJ</div>`
+    )[0];
+    popup_7bdade1afe0e4955feaa5d89acf6a030.setContent(
+      html_160cb2ad8c792e41c64dca97bdb3bf5a
+    );
+
+    circle_marker_d622178df8bea8854315ccb2d537674b.bindPopup(
+      popup_7bdade1afe0e4955feaa5d89acf6a030
+    );
+
+    var circle_marker_66ac52973c32960680c2c4632544c0ad = L.circleMarker(
+      [53.0566522, -2.19069595],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_e7928866e089fb05ed0bc4252e864850 = L.popup({ maxWidth: "100%" });
+
+    var html_12f15e8a70a556dc3c823c7ace9d424e = $(
+      `<div id="html_12f15e8a70a556dc3c823c7ace9d424e" style="width: 100.0%; height: 100.0%;">Name: Haywood Hospital<br>Address: High Ln, Burslem, Stoke-on-Trent ST6 7AG</div>`
+    )[0];
+    popup_e7928866e089fb05ed0bc4252e864850.setContent(
+      html_12f15e8a70a556dc3c823c7ace9d424e
+    );
+
+    circle_marker_66ac52973c32960680c2c4632544c0ad.bindPopup(
+      popup_e7928866e089fb05ed0bc4252e864850
+    );
+
+    var circle_marker_a0c8baa73fac5ead88e34dcd25b1c557 = L.circleMarker(
+      [52.7556864, 0.4436087],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_f452844c28b14811b58cb5f9a894b6b5 = L.popup({ maxWidth: "100%" });
+
+    var html_110ef533873add33145501e4ce73b28b = $(
+      `<div id="html_110ef533873add33145501e4ce73b28b" style="width: 100.0%; height: 100.0%;">Name: The Queen Elizabeth Hospital<br>Address: Gayton Rd, King's Lynn PE30 4ET</div>`
+    )[0];
+    popup_f452844c28b14811b58cb5f9a894b6b5.setContent(
+      html_110ef533873add33145501e4ce73b28b
+    );
+
+    circle_marker_a0c8baa73fac5ead88e34dcd25b1c557.bindPopup(
+      popup_f452844c28b14811b58cb5f9a894b6b5
+    );
+
+    var circle_marker_2bca3b6e55121227a9c8310e2061f003 = L.circleMarker(
+      [52.23165296666667, 0.7091504333333333],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_edd3647d6ba16f7ab96fc0c6d857bd1e = L.popup({ maxWidth: "100%" });
+
+    var html_de9544e3d5de9e826f25cf50c5ee596b = $(
+      `<div id="html_de9544e3d5de9e826f25cf50c5ee596b" style="width: 100.0%; height: 100.0%;">Name: West Suffolk Hospital<br>Address: Hardwick Ln, Bury St Edmunds, Bury Saint Edmunds IP33 2QZ</div>`
+    )[0];
+    popup_edd3647d6ba16f7ab96fc0c6d857bd1e.setContent(
+      html_de9544e3d5de9e826f25cf50c5ee596b
+    );
+
+    circle_marker_2bca3b6e55121227a9c8310e2061f003.bindPopup(
+      popup_edd3647d6ba16f7ab96fc0c6d857bd1e
+    );
+
+    var circle_marker_359c453d74d396e997f45321e42fc014 = L.circleMarker(
+      [52.3332436, -0.2023134],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_14087e24d2820db164882beb589f6841 = L.popup({ maxWidth: "100%" });
+
+    var html_e87b471be2a122e223a0a6575adee901 = $(
+      `<div id="html_e87b471be2a122e223a0a6575adee901" style="width: 100.0%; height: 100.0%;">Name: Hinchingbrooke Hospital<br>Address: Parkway Hinchingbrooke, Huntingdon PE29 6NT</div>`
+    )[0];
+    popup_14087e24d2820db164882beb589f6841.setContent(
+      html_e87b471be2a122e223a0a6575adee901
+    );
+
+    circle_marker_359c453d74d396e997f45321e42fc014.bindPopup(
+      popup_14087e24d2820db164882beb589f6841
+    );
+
+    var circle_marker_01c33146f2945bcfea417e2bf36495ff = L.circleMarker(
+      [52.6559481, -0.4675645],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_842aefcfde5609bf4de596dad3c5e053 = L.popup({ maxWidth: "100%" });
+
+    var html_2c3d7ef50b2580f94f278ea996d215a9 = $(
+      `<div id="html_2c3d7ef50b2580f94f278ea996d215a9" style="width: 100.0%; height: 100.0%;">Name: Stamford and Rutland Hospital<br>Address: Ryhall Rd, Stamford PE9 1UA</div>`
+    )[0];
+    popup_842aefcfde5609bf4de596dad3c5e053.setContent(
+      html_2c3d7ef50b2580f94f278ea996d215a9
+    );
+
+    circle_marker_01c33146f2945bcfea417e2bf36495ff.bindPopup(
+      popup_842aefcfde5609bf4de596dad3c5e053
+    );
+
+    var circle_marker_95f687b310ac20ce9f75d5c5a20023a8 = L.circleMarker(
+      [53.38378, -2.1320199],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_2e28a88512664d47685c4e6ddcd050a1 = L.popup({ maxWidth: "100%" });
+
+    var html_10e3f88343c2d7200265b8f24da2a8b1 = $(
+      `<div id="html_10e3f88343c2d7200265b8f24da2a8b1" style="width: 100.0%; height: 100.0%;">Name: Stepping Hill Hospital<br>Address: Poplar Grove, Hazel Grove, Stockport SK2 7JE</div>`
+    )[0];
+    popup_2e28a88512664d47685c4e6ddcd050a1.setContent(
+      html_10e3f88343c2d7200265b8f24da2a8b1
+    );
+
+    circle_marker_95f687b310ac20ce9f75d5c5a20023a8.bindPopup(
+      popup_2e28a88512664d47685c4e6ddcd050a1
+    );
+
+    var circle_marker_b4fdbed44db0f160ba93c7cd6c898bed = L.circleMarker(
+      [52.6650128, 0.1640225],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_72b89e35ebc263d86d4cdd1790fdbc60 = L.popup({ maxWidth: "100%" });
+
+    var html_71306d2916e6d3da89f9a6648a356e40 = $(
+      `<div id="html_71306d2916e6d3da89f9a6648a356e40" style="width: 100.0%; height: 100.0%;">Name: North Cambridgeshire Hospital - Wisbech<br>Address: Churchill Rd, Wisbech PE13 3AB</div>`
+    )[0];
+    popup_72b89e35ebc263d86d4cdd1790fdbc60.setContent(
+      html_71306d2916e6d3da89f9a6648a356e40
+    );
+
+    circle_marker_b4fdbed44db0f160ba93c7cd6c898bed.bindPopup(
+      popup_72b89e35ebc263d86d4cdd1790fdbc60
+    );
+
+    var circle_marker_b23639d3c1945415be11448f61ac42d4 = L.circleMarker(
+      [53.51788, -2.2295],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_64f84f35260c2c4d8ce9559533d74e2b = L.popup({ maxWidth: "100%" });
+
+    var html_d784c38504218198eaf58f7e9ce5c86b = $(
+      `<div id="html_d784c38504218198eaf58f7e9ce5c86b" style="width: 100.0%; height: 100.0%;">Name: North Manchester General<br>Address: Delaunays Rd, Crumpsall, Manchester M8 5RB</div>`
+    )[0];
+    popup_64f84f35260c2c4d8ce9559533d74e2b.setContent(
+      html_d784c38504218198eaf58f7e9ce5c86b
+    );
+
+    circle_marker_b23639d3c1945415be11448f61ac42d4.bindPopup(
+      popup_64f84f35260c2c4d8ce9559533d74e2b
+    );
+
+    var circle_marker_d7cf59788103011790ec6431e8d53ede = L.circleMarker(
+      [53.38792, -2.29318],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_3550376d0ecc95b85216682c274ca5ed = L.popup({ maxWidth: "100%" });
+
+    var html_7d3872379e9fa3e6eed7b5e1ef2200fa = $(
+      `<div id="html_7d3872379e9fa3e6eed7b5e1ef2200fa" style="width: 100.0%; height: 100.0%;">Name: Wythenshawe Hospital <br>Address: Southmoor Rd, Wythenshawe, Manchester M23 9LT</div>`
+    )[0];
+    popup_3550376d0ecc95b85216682c274ca5ed.setContent(
+      html_7d3872379e9fa3e6eed7b5e1ef2200fa
+    );
+
+    circle_marker_d7cf59788103011790ec6431e8d53ede.bindPopup(
+      popup_3550376d0ecc95b85216682c274ca5ed
+    );
+
+    var circle_marker_1f001c8daba2b3105044f8a18c72d0e5 = L.circleMarker(
+      [54.2822481, -0.4362387],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_b34b174e8155bde93c9468533d7b9846 = L.popup({ maxWidth: "100%" });
+
+    var html_cded56cae4d791d24cb967d2d744cbd1 = $(
+      `<div id="html_cded56cae4d791d24cb967d2d744cbd1" style="width: 100.0%; height: 100.0%;">Name: Scarborough General Hospital<br>Address: Woodlands Dr, Scarborough YO12 6QL</div>`
+    )[0];
+    popup_b34b174e8155bde93c9468533d7b9846.setContent(
+      html_cded56cae4d791d24cb967d2d744cbd1
+    );
+
+    circle_marker_1f001c8daba2b3105044f8a18c72d0e5.bindPopup(
+      popup_b34b174e8155bde93c9468533d7b9846
+    );
+
+    var circle_marker_3f05b2fb04a3f57210d289e48efe2e1b = L.circleMarker(
+      [53.9938316, -1.5180971],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_1d6e412f7668d4813f1e7533b33e5651 = L.popup({ maxWidth: "100%" });
+
+    var html_bee167ad2735f53f0fe1d1341d019070 = $(
+      `<div id="html_bee167ad2735f53f0fe1d1341d019070" style="width: 100.0%; height: 100.0%;">Name: Harrogate Hospital<br>Address: Lancaster Park Rd, Harrogate HG2 7SX</div>`
+    )[0];
+    popup_1d6e412f7668d4813f1e7533b33e5651.setContent(
+      html_bee167ad2735f53f0fe1d1341d019070
+    );
+
+    circle_marker_3f05b2fb04a3f57210d289e48efe2e1b.bindPopup(
+      popup_1d6e412f7668d4813f1e7533b33e5651
+    );
+
+    var circle_marker_eaa2ee13e7dac24ecf4369358411f65f = L.circleMarker(
+      [50.93284145, -1.434199983333333],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_a634cfaa88f13de7232b2e33fb8fbcac = L.popup({ maxWidth: "100%" });
+
+    var html_fd33f35bd373f155f396d8bb019d63df = $(
+      `<div id="html_fd33f35bd373f155f396d8bb019d63df" style="width: 100.0%; height: 100.0%;">Name: Southampton General Hospital<br>Address: Tremona Rd, Southampton SO16 6YD</div>`
+    )[0];
+    popup_a634cfaa88f13de7232b2e33fb8fbcac.setContent(
+      html_fd33f35bd373f155f396d8bb019d63df
+    );
+
+    circle_marker_eaa2ee13e7dac24ecf4369358411f65f.bindPopup(
+      popup_a634cfaa88f13de7232b2e33fb8fbcac
+    );
+
+    var circle_marker_8aea995557ea672d5e0891e8d04a8a66 = L.circleMarker(
+      [53.4874685, -2.3243642],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_41b5e47f085e5390e53bdb377d4b4d9a = L.popup({ maxWidth: "100%" });
+
+    var html_ee9c4b55809dcd8fd7bb478b2861b076 = $(
+      `<div id="html_ee9c4b55809dcd8fd7bb478b2861b076" style="width: 100.0%; height: 100.0%;">Name: Salford Royal Hospital<br>Address: Stott Ln, Salford M6 8HD</div>`
+    )[0];
+    popup_41b5e47f085e5390e53bdb377d4b4d9a.setContent(
+      html_ee9c4b55809dcd8fd7bb478b2861b076
+    );
+
+    circle_marker_8aea995557ea672d5e0891e8d04a8a66.bindPopup(
+      popup_41b5e47f085e5390e53bdb377d4b4d9a
+    );
+
+    var circle_marker_2c50cb8365256022faa861f073a69ca0 = L.circleMarker(
+      [53.55395, -2.12067],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_b21f0e187e661037632e587fca7d66cf = L.popup({ maxWidth: "100%" });
+
+    var html_0377339e675c749055a86fee728577f5 = $(
+      `<div id="html_0377339e675c749055a86fee728577f5" style="width: 100.0%; height: 100.0%;">Name: The Royal Oldham Hospital<br>Address: Rochdale Rd, Oldham OL1 2JH</div>`
+    )[0];
+    popup_b21f0e187e661037632e587fca7d66cf.setContent(
+      html_0377339e675c749055a86fee728577f5
+    );
+
+    circle_marker_2c50cb8365256022faa861f073a69ca0.bindPopup(
+      popup_b21f0e187e661037632e587fca7d66cf
+    );
+
+    var circle_marker_6cf0af67525af75d49298c82b562a30c = L.circleMarker(
+      [53.7359807, -2.4635709],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_065f567b746f64333ff038b761b87512 = L.popup({ maxWidth: "100%" });
+
+    var html_dcec70e821b173db6e8ee48b6de1b87f = $(
+      `<div id="html_dcec70e821b173db6e8ee48b6de1b87f" style="width: 100.0%; height: 100.0%;">Name: Royal Blackburn Hospital<br>Address: Haslingden Rd, Blackburn BB2 3HH</div>`
+    )[0];
+    popup_065f567b746f64333ff038b761b87512.setContent(
+      html_dcec70e821b173db6e8ee48b6de1b87f
+    );
+
+    circle_marker_6cf0af67525af75d49298c82b562a30c.bindPopup(
+      popup_065f567b746f64333ff038b761b87512
+    );
+
+    var circle_marker_459299d96adc9475393aace5609eee44 = L.circleMarker(
+      [52.6341417, 1.2625801],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_04674b8991b9618aa014e1ac3704153a = L.popup({ maxWidth: "100%" });
+
+    var html_409a02e95cdb29ab11e05f82d8a88f0d = $(
+      `<div id="html_409a02e95cdb29ab11e05f82d8a88f0d" style="width: 100.0%; height: 100.0%;">Name: Norwich Community Hospital<br>Address: Bowthorpe Rd, Norwich NR2 3TU</div>`
+    )[0];
+    popup_04674b8991b9618aa014e1ac3704153a.setContent(
+      html_409a02e95cdb29ab11e05f82d8a88f0d
+    );
+
+    circle_marker_459299d96adc9475393aace5609eee44.bindPopup(
+      popup_04674b8991b9618aa014e1ac3704153a
+    );
+
+    var circle_marker_bc32e2b16c7253d5325263a9ba2b72d9 = L.circleMarker(
+      [51.7505724, -1.216175],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_a17fe8e2895fcc0348c53499df6d2b18 = L.popup({ maxWidth: "100%" });
+
+    var html_251b1b2182603f9548615ef4cd050183 = $(
+      `<div id="html_251b1b2182603f9548615ef4cd050183" style="width: 100.0%; height: 100.0%;">Name: Churchill Hospital <br>Address: Old Rd, Headington, Oxford OX3 7LE</div>`
+    )[0];
+    popup_a17fe8e2895fcc0348c53499df6d2b18.setContent(
+      html_251b1b2182603f9548615ef4cd050183
+    );
+
+    circle_marker_bc32e2b16c7253d5325263a9ba2b72d9.bindPopup(
+      popup_a17fe8e2895fcc0348c53499df6d2b18
+    );
+
+    var circle_marker_ca563f7fe20971c6901b9db68013e12f = L.circleMarker(
+      [50.7995578, -1.0642317],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_31d795eb7a61d3bc0d984fff3ebff186 = L.popup({ maxWidth: "100%" });
+
+    var html_0590ccc051e48a7aaf5348d951394c7e = $(
+      `<div id="html_0590ccc051e48a7aaf5348d951394c7e" style="width: 100.0%; height: 100.0%;">Name: St. Marys Community Hospital<br>Address: Milton Rd, Milton, Portsmouth PO3 6AD</div>`
+    )[0];
+    popup_31d795eb7a61d3bc0d984fff3ebff186.setContent(
+      html_0590ccc051e48a7aaf5348d951394c7e
+    );
+
+    circle_marker_ca563f7fe20971c6901b9db68013e12f.bindPopup(
+      popup_31d795eb7a61d3bc0d984fff3ebff186
+    );
+
+    var circle_marker_84ffbe959e16db512f23168f0bfe3389 = L.circleMarker(
+      [50.8439405, -0.7690264],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_89634328c8eee24ac15f9552ebec725c = L.popup({ maxWidth: "100%" });
+
+    var html_bffd77f918f110378f785d6c7b2d3ae9 = $(
+      `<div id="html_bffd77f918f110378f785d6c7b2d3ae9" style="width: 100.0%; height: 100.0%;">Name: St Richard's Hospital<br>Address: Spitalfield Ln, Chichester PO19 6SE</div>`
+    )[0];
+    popup_89634328c8eee24ac15f9552ebec725c.setContent(
+      html_bffd77f918f110378f785d6c7b2d3ae9
+    );
+
+    circle_marker_84ffbe959e16db512f23168f0bfe3389.bindPopup(
+      popup_89634328c8eee24ac15f9552ebec725c
+    );
+
+    var circle_marker_f506d4ae084c52ea914440e478eff5b3 = L.circleMarker(
+      [54.5824951, -1.3470967],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_794198aef1017391b95ae6f29f58acbc = L.popup({ maxWidth: "100%" });
+
+    var html_6bd329bee7519d5a6603674a2ea8265a = $(
+      `<div id="html_6bd329bee7519d5a6603674a2ea8265a" style="width: 100.0%; height: 100.0%;">Name: University Hospital of North Tees <br>Address: Hardwick Rd, Hardwick, Stockton-on-Tees TS19 8PE</div>`
+    )[0];
+    popup_794198aef1017391b95ae6f29f58acbc.setContent(
+      html_6bd329bee7519d5a6603674a2ea8265a
+    );
+
+    circle_marker_f506d4ae084c52ea914440e478eff5b3.bindPopup(
+      popup_794198aef1017391b95ae6f29f58acbc
+    );
+
+    var circle_marker_5935b4de1920a0b4d281a383bd2ce9a4 = L.circleMarker(
+      [54.55172303333334, -1.214676466666667],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_9cc53be8c0ad97fa868aaf1f0052fa72 = L.popup({ maxWidth: "100%" });
+
+    var html_13d5ca3d8897f6742023aca0c44a4318 = $(
+      `<div id="html_13d5ca3d8897f6742023aca0c44a4318" style="width: 100.0%; height: 100.0%;">Name: James Cook Hospital<br>Address: Marton Rd, Middlesbrough TS4 3BW</div>`
+    )[0];
+    popup_9cc53be8c0ad97fa868aaf1f0052fa72.setContent(
+      html_13d5ca3d8897f6742023aca0c44a4318
+    );
+
+    circle_marker_5935b4de1920a0b4d281a383bd2ce9a4.bindPopup(
+      popup_9cc53be8c0ad97fa868aaf1f0052fa72
+    );
+
+    var circle_marker_9d1372cd59132814c68726b2d1a6092d = L.circleMarker(
+      [53.587034, -0.6672],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_f0884e74fc38f487c5633c38270f7e65 = L.popup({ maxWidth: "100%" });
+
+    var html_e6c07bf7530fdc77bc3bcbd056a33894 = $(
+      `<div id="html_e6c07bf7530fdc77bc3bcbd056a33894" style="width: 100.0%; height: 100.0%;">Name: Scunthorpe General Hospital <br>Address: Cliff Gardens, Scunthorpe DN15 7BH</div>`
+    )[0];
+    popup_f0884e74fc38f487c5633c38270f7e65.setContent(
+      html_e6c07bf7530fdc77bc3bcbd056a33894
+    );
+
+    circle_marker_9d1372cd59132814c68726b2d1a6092d.bindPopup(
+      popup_f0884e74fc38f487c5633c38270f7e65
+    );
+
+    var circle_marker_7e56a0fe756ccff36f23a7e9ce6619e3 = L.circleMarker(
+      [52.7122853, -2.5122048],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_b7c79ad9ff4e42a1f88152a91fb82af1 = L.popup({ maxWidth: "100%" });
+
+    var html_1e42dadac9a542ebf483a10226a125d1 = $(
+      `<div id="html_1e42dadac9a542ebf483a10226a125d1" style="width: 100.0%; height: 100.0%;">Name: The Princess Royal Hospital<br>Address: Apley Castle, Telford TF1 6TF</div>`
+    )[0];
+    popup_b7c79ad9ff4e42a1f88152a91fb82af1.setContent(
+      html_1e42dadac9a542ebf483a10226a125d1
+    );
+
+    circle_marker_7e56a0fe756ccff36f23a7e9ce6619e3.bindPopup(
+      popup_b7c79ad9ff4e42a1f88152a91fb82af1
+    );
+
+    var circle_marker_bc3bf1a7a84c47e6e4ee4a035c69e3c5 = L.circleMarker(
+      [52.5024733, -2.12124055],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_bb4bcd51c75fc29f7a5c487073c83c23 = L.popup({ maxWidth: "100%" });
+
+    var html_b611924148e96fd2d678a49a82086dc2 = $(
+      `<div id="html_b611924148e96fd2d678a49a82086dc2" style="width: 100.0%; height: 100.0%;">Name: Russells Hall<br>Address: Pensnett Rd, Dudley DY1 2HQ</div>`
+    )[0];
+    popup_bb4bcd51c75fc29f7a5c487073c83c23.setContent(
+      html_b611924148e96fd2d678a49a82086dc2
+    );
+
+    circle_marker_bc3bf1a7a84c47e6e4ee4a035c69e3c5.bindPopup(
+      popup_bb4bcd51c75fc29f7a5c487073c83c23
+    );
+
+    var circle_marker_67d95c3d1a8dda1f585c1f86a71ebc05 = L.circleMarker(
+      [51.553116, -0.1652263],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_8d1ca2a85f33a3fd4122a80fac4b5eaa = L.popup({ maxWidth: "100%" });
+
+    var html_d21f22a4fa59f8a3e79c54d5ae7c0dee = $(
+      `<div id="html_d21f22a4fa59f8a3e79c54d5ae7c0dee" style="width: 100.0%; height: 100.0%;">Name: Royal Free Hospital<br>Address: Pond St, London NW3 2QG</div>`
+    )[0];
+    popup_8d1ca2a85f33a3fd4122a80fac4b5eaa.setContent(
+      html_d21f22a4fa59f8a3e79c54d5ae7c0dee
+    );
+
+    circle_marker_67d95c3d1a8dda1f585c1f86a71ebc05.bindPopup(
+      popup_8d1ca2a85f33a3fd4122a80fac4b5eaa
+    );
+
+    var circle_marker_7496fe70c2561a531bc5d269228c0dfc = L.circleMarker(
+      [51.55005385, -0.0459811],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_1b3b89b5a678995ee97ceb4ff4a73e97 = L.popup({ maxWidth: "100%" });
+
+    var html_7190dc6aef8a00532a9e7f23c3724456 = $(
+      `<div id="html_7190dc6aef8a00532a9e7f23c3724456" style="width: 100.0%; height: 100.0%;">Name: Homerton University Hospital<br>Address: Homerton Row, London E9 6SR</div>`
+    )[0];
+    popup_1b3b89b5a678995ee97ceb4ff4a73e97.setContent(
+      html_7190dc6aef8a00532a9e7f23c3724456
+    );
+
+    circle_marker_7496fe70c2561a531bc5d269228c0dfc.bindPopup(
+      popup_1b3b89b5a678995ee97ceb4ff4a73e97
+    );
+
+    var circle_marker_e1720fddaeec4f0364eee447faf64351 = L.circleMarker(
+      [53.3316004, -3.0253121],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_3a329c0d07d395fa67ef5720ae5f6d4d = L.popup({ maxWidth: "100%" });
+
+    var html_395a883fc4582628a6d4214568fa07ce = $(
+      `<div id="html_395a883fc4582628a6d4214568fa07ce" style="width: 100.0%; height: 100.0%;">Name: Clatterbridge Hospital <br>Address: Clatterbridge Rd, Bebington, Birkenhead, Wirral CH63 4JY</div>`
+    )[0];
+    popup_3a329c0d07d395fa67ef5720ae5f6d4d.setContent(
+      html_395a883fc4582628a6d4214568fa07ce
+    );
+
+    circle_marker_e1720fddaeec4f0364eee447faf64351.bindPopup(
+      popup_3a329c0d07d395fa67ef5720ae5f6d4d
+    );
+
+    var circle_marker_542c024ce47bce583e11f866d1e4e1bf = L.circleMarker(
+      [51.09217, -4.05043],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_7ba563ad5e079dff967a7b960ed30771 = L.popup({ maxWidth: "100%" });
+
+    var html_bff51a884375521fa4bd8cc0059ffda5 = $(
+      `<div id="html_bff51a884375521fa4bd8cc0059ffda5" style="width: 100.0%; height: 100.0%;">Name: North Devon District Hospital<br>Address: Raleigh Heights, Barnstaple EX31 4JB</div>`
+    )[0];
+    popup_7ba563ad5e079dff967a7b960ed30771.setContent(
+      html_bff51a884375521fa4bd8cc0059ffda5
+    );
+
+    circle_marker_542c024ce47bce583e11f866d1e4e1bf.bindPopup(
+      popup_7ba563ad5e079dff967a7b960ed30771
+    );
+
+    var circle_marker_ab1fe236cd36102e6e1616671f93771b = L.circleMarker(
+      [50.4160585, -4.114495],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_6a52c2160e8da92d3bcef9a0b58f9bcb = L.popup({ maxWidth: "100%" });
+
+    var html_6f3caef4607ae110272f1922129c372d = $(
+      `<div id="html_6f3caef4607ae110272f1922129c372d" style="width: 100.0%; height: 100.0%;">Name: Derriford Hospital<br>Address: Derriford Rd, Plymouth PL6 8DH</div>`
+    )[0];
+    popup_6a52c2160e8da92d3bcef9a0b58f9bcb.setContent(
+      html_6f3caef4607ae110272f1922129c372d
+    );
+
+    circle_marker_ab1fe236cd36102e6e1616671f93771b.bindPopup(
+      popup_6a52c2160e8da92d3bcef9a0b58f9bcb
+    );
+
+    var circle_marker_2af452d031dfb160855d5873d7e71749 = L.circleMarker(
+      [51.3798003, 0.5416386],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_49ef705b033a9c3a54b55d15c958adf0 = L.popup({ maxWidth: "100%" });
+
+    var html_73714845f74a031dda9783005f45e47e = $(
+      `<div id="html_73714845f74a031dda9783005f45e47e" style="width: 100.0%; height: 100.0%;">Name: Medway Maritime Hospital<br>Address: Windmill Rd, Gillingham, Kent ME7 5NY</div>`
+    )[0];
+    popup_49ef705b033a9c3a54b55d15c958adf0.setContent(
+      html_73714845f74a031dda9783005f45e47e
+    );
+
+    circle_marker_2af452d031dfb160855d5873d7e71749.bindPopup(
+      popup_49ef705b033a9c3a54b55d15c958adf0
+    );
+
+    var circle_marker_2b58a69b6ef55c5fa2d93fc79bafe957 = L.circleMarker(
+      [53.55913, -1.49949],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_74eafbe7a8aaf5be05745f60fdc48b55 = L.popup({ maxWidth: "100%" });
+
+    var html_23bb91e3d98744de4dfcfcd1b6bbaf1d = $(
+      `<div id="html_23bb91e3d98744de4dfcfcd1b6bbaf1d" style="width: 100.0%; height: 100.0%;">Name: Barnsley Hospital<br>Address: Gawber Rd, Barnsley S75 2EP</div>`
+    )[0];
+    popup_74eafbe7a8aaf5be05745f60fdc48b55.setContent(
+      html_23bb91e3d98744de4dfcfcd1b6bbaf1d
+    );
+
+    circle_marker_2b58a69b6ef55c5fa2d93fc79bafe957.bindPopup(
+      popup_74eafbe7a8aaf5be05745f60fdc48b55
+    );
+
+    var circle_marker_9464d0d140d6819d0e4d321383374c06 = L.circleMarker(
+      [51.45326853333333, -0.01737919166666667],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_45f923c09be4214c661a5d57547ff9ba = L.popup({ maxWidth: "100%" });
+
+    var html_7309311f1f4d3e86c639339fd7551063 = $(
+      `<div id="html_7309311f1f4d3e86c639339fd7551063" style="width: 100.0%; height: 100.0%;">Name: University Hospital Lewisham<br>Address: University Hospital Lewisham, Lewisham High St, London SE13 6LH</div>`
+    )[0];
+    popup_45f923c09be4214c661a5d57547ff9ba.setContent(
+      html_7309311f1f4d3e86c639339fd7551063
+    );
+
+    circle_marker_9464d0d140d6819d0e4d321383374c06.bindPopup(
+      popup_45f923c09be4214c661a5d57547ff9ba
+    );
+
+    var circle_marker_c44275940718f09cad7f22bd8d0ca68a = L.circleMarker(
+      [51.66653, -0.1040399],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_b11fe5fd51b554108dc34de7fe3468b6 = L.popup({ maxWidth: "100%" });
+
+    var html_ec7e0ef4ce459131ab1a779ad4ec8d91 = $(
+      `<div id="html_ec7e0ef4ce459131ab1a779ad4ec8d91" style="width: 100.0%; height: 100.0%;">Name: Chase Farm Hospital<br>Address: 127 The Ridgeway, Enfield EN2 8JL</div>`
+    )[0];
+    popup_b11fe5fd51b554108dc34de7fe3468b6.setContent(
+      html_ec7e0ef4ce459131ab1a779ad4ec8d91
+    );
+
+    circle_marker_c44275940718f09cad7f22bd8d0ca68a.bindPopup(
+      popup_b11fe5fd51b554108dc34de7fe3468b6
+    );
+
+    var circle_marker_fc36eee36c4d604815ee4edbaceab357 = L.circleMarker(
+      [51.2413044, -0.608939075],
+      {
+        bubblingMouseEvents: true,
+        color: "red",
+        dashArray: null,
+        dashOffset: null,
+        fill: true,
+        fillColor: "red",
+        fillOpacity: 0.2,
+        fillRule: "evenodd",
+        lineCap: "round",
+        lineJoin: "round",
+        opacity: 1.0,
+        radius: 5,
+        stroke: true,
+        weight: 3,
+      }
+    ).addTo(map_9677b3e30a27e6cd0f6f2b76f848158a);
+
+    var popup_6adfe8d2ecce80ba471071bc62a60301 = L.popup({ maxWidth: "100%" });
+
+    var html_51b1f96370e6ecf8900c1ddd16d10dc7 = $(
+      `<div id="html_51b1f96370e6ecf8900c1ddd16d10dc7" style="width: 100.0%; height: 100.0%;">Name: Guildford Hospital<br>Address: Egerton Rd, Guildford GU2 7XX</div>`
+    )[0];
+    popup_6adfe8d2ecce80ba471071bc62a60301.setContent(
+      html_51b1f96370e6ecf8900c1ddd16d10dc7
+    );
+
+    circle_marker_fc36eee36c4d604815ee4edbaceab357.bindPopup(
+      popup_6adfe8d2ecce80ba471071bc62a60301
+    );
+  </script>
 </html>
