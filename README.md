@@ -244,10 +244,10 @@ This work has been made possible through the support of:
 
 ## Funding
 
-This research was supported by:
+Funded by:
 
-- Centre for Postdoctoral Development in Infrastructure, Cities and Energy (C-DICE)
-- IMFUNA LTD
+- [Centre for Postdoctoral Development in Infrastructure, Cities and Energy (C-DICE)](https://www.cdice.ac.uk)
+- [IMFUNA LTD](https://www.imfuna.com)
 
 ## Keywords
 
