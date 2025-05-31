@@ -70,6 +70,30 @@
         color: #2d3748 !important;
         opacity: 1 !important;
       }
+      /* Illuminating edge effect for hospital markers */
+      .leaflet-interactive[stroke][fill="red"] {
+        stroke: #ff4d4d !important;
+        stroke-width: 5 !important;
+        filter: drop-shadow(0 0 8px #ff4d4d);
+        animation: hospital-stroke-glow 1.2s infinite alternate;
+      }
+      @keyframes hospital-stroke-glow {
+        0% {
+          stroke: #ff4d4d;
+          filter: drop-shadow(0 0 2px #ff4d4d);
+          stroke-opacity: 0.5;
+        }
+        50% {
+          stroke: #fff200;
+          filter: drop-shadow(0 0 16px #fff200);
+          stroke-opacity: 1;
+        }
+        100% {
+          stroke: #ff4d4d;
+          filter: drop-shadow(0 0 2px #ff4d4d);
+          stroke-opacity: 0.5;
+        }
+      }
     </style>
     <style>
       #map {
