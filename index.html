@@ -17,19 +17,58 @@
         padding: 0;
       }
       .leaflet-popup-content-wrapper {
-        max-width: 300px !important;
-        max-height: 200px !important;
+        width: 300px !important;
+        height: 120px !important;
         overflow-y: auto !important;
-        padding: 10px !important;
+        padding: 15px !important;
+        background: rgba(255, 255, 255, 0.85) !important;
+        backdrop-filter: blur(5px) !important;
+        -webkit-backdrop-filter: blur(5px) !important;
+        border-radius: 8px !important;
+        box-shadow: 0 3px 14px rgba(0, 0, 0, 0.15) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
       }
       .leaflet-popup-content {
-        margin: 10px !important;
+        margin: 0 !important;
         font-family: Arial, sans-serif !important;
-        font-size: 14px !important;
-        line-height: 1.4 !important;
+        font-size: 12px !important;
+        line-height: 1.6 !important;
+        color: #2c3e50 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+      .leaflet-popup-content div {
+        padding: 5px 0 !important;
+        width: 100% !important;
+        white-space: normal !important;
+        word-wrap: break-word !important;
+      }
+      .leaflet-popup-content div:first-child {
+        font-weight: bold !important;
+        color: #1a365d !important;
+        padding-bottom: 8px !important;
+        margin-bottom: 8px !important;
+        font-size: 15px !important;
+      }
+      .leaflet-popup-tip {
+        background: rgba(255, 255, 255, 0.064) !important;
+        backdrop-filter: blur(3px) !important;
+        -webkit-backdrop-filter: blur(5px) !important;
+        box-shadow: 0 3px 14px rgba(0, 0, 0, 0.15) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
       }
       .leaflet-popup {
-        max-width: 300px !important;
+        width: 300px !important;
+      }
+      .leaflet-popup-close-button {
+        color: #4a5568 !important;
+        font-size: 18px !important;
+        padding: 4px 4px 0 0 !important;
+        opacity: 0.7 !important;
+      }
+      .leaflet-popup-close-button:hover {
+        color: #2d3748 !important;
+        opacity: 1 !important;
       }
     </style>
     <style>
